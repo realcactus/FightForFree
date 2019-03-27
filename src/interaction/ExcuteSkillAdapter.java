@@ -92,6 +92,7 @@ public class ExcuteSkillAdapter implements Skillable{
                     +character.getShoes().calculateCritRate()
                     +character.getWeapon().calculateCritRate()
                     +character.getRing().calculateCritRate();
+            critRate += critRateAppend;
             if(critRate > 0){
                 values.put(StatusCode.ADD_CRIT, critRate);
             }

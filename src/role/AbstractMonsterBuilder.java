@@ -13,6 +13,8 @@ public abstract class AbstractMonsterBuilder implements TargetBuilder {
     protected int magicalDef;
     protected double critRate;
 
+    protected int difficulty;
+
     @Override
     public AbstractMonsterBuilder hp(int hp) {
         this.hp = hp;
@@ -52,6 +54,11 @@ public abstract class AbstractMonsterBuilder implements TargetBuilder {
     @Override
     public AbstractMonsterBuilder critRate(double critRate) {
         this.critRate = critRate;
+        return this;
+    }
+
+    public AbstractMonsterBuilder difficulty(int difficulty) {
+        this.difficulty = difficulty;
         return this;
     }
 

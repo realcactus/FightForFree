@@ -1,9 +1,14 @@
 package role;
 
+import utils.StatusCode;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author: Zhou Xiaosong
  */
-public class Slime extends Target implements Cloneable, Atkable{
+public class Slime extends Monster implements Cloneable, Atkable{
     private Slime(Builder builder){
         this.hp = builder.hp;
         this.mp = builder.mp;
@@ -12,6 +17,7 @@ public class Slime extends Target implements Cloneable, Atkable{
         this.physicalDef = builder.physicalDef;
         this.magicalDef = builder.magicalDef;
         this.critRate = builder.critRate;
+        this.difficulty = builder.difficulty;
     }
 
     @Override
@@ -21,22 +27,11 @@ public class Slime extends Target implements Cloneable, Atkable{
     }
 
     @Override
-    public String toString() {
-        return "Slime{" +
-                "hp=" + hp +
-                ", mp=" + mp +
-                ", physicalAtk=" + physicalAtk +
-                ", magicalAtk=" + magicalAtk +
-                ", physicalDef=" + physicalDef +
-                ", magicalDef=" + magicalDef +
-                ", critRate=" + critRate +
-                '}';
-    }
-
-    @Override
-    public int physicalCut() {
+    public Map<String, Object> physicalCut() {
         //TODO:史莱姆目前只定义物理攻击atk
-        return this.getPhysicalAtk();
+        Map<String, Object> result = new HashMap<>();
+        result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());
+        return result;
     }
 
     public static final class Builder extends AbstractMonsterBuilder{

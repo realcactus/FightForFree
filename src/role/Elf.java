@@ -4,10 +4,15 @@ package role;
  * @Author: Zhou Xiaosong
  */
 
+import utils.StatusCode;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 精灵
  */
-public class Elf extends Target implements Cloneable, Atkable{
+public class Elf extends Monster implements Cloneable, Atkable{
     private Elf(Builder builder){
         this.hp = builder.hp;
         this.mp = builder.mp;
@@ -16,6 +21,7 @@ public class Elf extends Target implements Cloneable, Atkable{
         this.physicalDef = builder.physicalDef;
         this.magicalDef = builder.magicalDef;
         this.critRate = builder.critRate;
+        this.difficulty = builder.difficulty;
     }
     @Override
     public void show() {
@@ -24,22 +30,11 @@ public class Elf extends Target implements Cloneable, Atkable{
     }
 
     @Override
-    public String toString() {
-        return "Elf{" +
-                "hp=" + hp +
-                ", mp=" + mp +
-                ", physicalAtk=" + physicalAtk +
-                ", magicalAtk=" + magicalAtk +
-                ", physicalDef=" + physicalDef +
-                ", magicalDef=" + magicalDef +
-                ", critRate=" + critRate +
-                '}';
-    }
-
-    @Override
-    public int physicalCut() {
+    public Map<String, Object> physicalCut() {
         //TODO：精灵目前只定义物理攻击
-        return this.getPhysicalAtk();
+        Map<String, Object> result = new HashMap<>();
+        result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());
+        return result;
     }
 
     public static final class Builder extends AbstractMonsterBuilder{

@@ -32,24 +32,28 @@ public class SimpleCut extends DamageSkill {
                 setNeedMp(40);
                 setFixedDamage(100);
                 setAtkPercentage(0.15);
+                break;
             case 2:
                 setLevel(3);
                 setUpLevelMoney(10000);
                 setNeedMp(60);
                 setFixedDamage(150);
                 setAtkPercentage(0.20);
+                break;
             case 3:
                 setLevel(4);
                 setUpLevelMoney(30000);
                 setNeedMp(80);
                 setFixedDamage(200);
                 setAtkPercentage(0.25);
+                break;
             case 4:
                 setLevel(5);
                 setUpLevelMoney(100000);
                 setNeedMp(150);
                 setFixedDamage(500);
                 setAtkPercentage(0.50);
+                break;
         }
         return 0;
     }

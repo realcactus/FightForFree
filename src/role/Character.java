@@ -10,7 +10,7 @@ import interaction.Skillable;
 import skill.ISkill;
 import utils.StatusCode;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +18,7 @@ import java.util.Map;
  */
 
 //基本角色最多携带4个技能，后面扩展可能会有能携带多个技能的角色
-public abstract class Character extends Target implements Atkable{
+public abstract class Character extends Target{
     protected int level;
     protected int experience;
     protected int money;
@@ -36,15 +36,15 @@ public abstract class Character extends Target implements Atkable{
 
     //桥接一身的装备
     //头盔
-    protected Helmet helmet;
+    protected IEquip helmet;
     //衣服
-    protected Clothes clothes;
+    protected IEquip clothes;
     //鞋子
-    protected Shoes shoes;
+    protected IEquip shoes;
     //武器
-    protected Weapon weapon;
+    protected IEquip weapon;
     //戒指
-    protected Ring ring;
+    protected IEquip ring;
 
     //桥接的4个技能抽象
     protected ISkill skill1;
@@ -59,7 +59,9 @@ public abstract class Character extends Target implements Atkable{
     }
 
     //物理攻击！
-    public int physicalCut(){
+    @Override
+    public Map<String, Object> physicalCut(){
+        Map<String, Object> result = new HashMap<>();
         //返回物理攻击产生的数值
         int physicalAtk = this.getPhysicalAtk();
         //物理攻击
@@ -69,7 +71,8 @@ public abstract class Character extends Target implements Atkable{
                 +this.getWeapon().calculatePhysicalAtk()
                 +this.getRing().calculatePhysicalAtk();
         physicalAtk += physicalAtkAppend;
-        return physicalAtk;
+        result.put(StatusCode.ATK_DAMAGE, physicalAtk);
+        return result;
     }
 
     //根据状态集合更新状态
@@ -118,14 +121,14 @@ public abstract class Character extends Target implements Atkable{
         }
         //增加暴击率
         if(values.containsKey(StatusCode.ADD_CRIT)){
-            double critRate = (Integer)(values.get(StatusCode.ADD_CRIT));
+            double critRate = (Double) (values.get(StatusCode.ADD_CRIT));
             if (critRate > 0){
                 setCritRate(this.critRate + critRate);
             }
         }
         //增加吸血率
         if(values.containsKey(StatusCode.ADD_S_BLOOD)){
-            double suckBlood = (Integer)(values.get(StatusCode.ADD_S_BLOOD));
+            double suckBlood = (Double)(values.get(StatusCode.ADD_S_BLOOD));
             if (suckBlood > 0){
                 setBloodSucking(suckBlood);
             }
@@ -158,44 +161,87 @@ public abstract class Character extends Target implements Atkable{
         this.money = money;
     }
 
-    public Helmet getHelmet() {
+    public ISkill getSkill1() {
+        return skill1;
+    }
+
+    public void setSkill1(ISkill skill1) {
+        this.skill1 = skill1;
+    }
+
+    public ISkill getSkill2() {
+        return skill2;
+    }
+
+    public void setSkill2(ISkill skill2) {
+        this.skill2 = skill2;
+    }
+
+    public ISkill getSkill3() {
+        return skill3;
+    }
+
+    public void setSkill3(ISkill skill3) {
+        this.skill3 = skill3;
+    }
+
+    public ISkill getSkill4() {
+        return skill4;
+    }
+
+    public void setSkill4(ISkill skill4) {
+        this.skill4 = skill4;
+    }
+
+    public IEquip getHelmet() {
         return helmet;
     }
 
-    public void setHelmet(Helmet helmet) {
+    public void setHelmet(IEquip helmet) {
         this.helmet = helmet;
     }
 
-    public Clothes getClothes() {
+    public IEquip getClothes() {
         return clothes;
     }
 
-    public void setClothes(Clothes clothes) {
+    public void setClothes(IEquip clothes) {
         this.clothes = clothes;
     }
 
-    public Shoes getShoes() {
+    public IEquip getShoes() {
         return shoes;
     }
 
-    public void setShoes(Shoes shoes) {
+    public void setShoes(IEquip shoes) {
         this.shoes = shoes;
     }
 
-    public Weapon getWeapon() {
+    public IEquip getWeapon() {
         return weapon;
     }
 
-    public void setWeapon(Weapon weapon) {
+    public void setWeapon(IEquip weapon) {
         this.weapon = weapon;
     }
 
-    public Ring getRing() {
+    public IEquip getRing() {
         return ring;
     }
 
-    public void setRing(Ring ring) {
+    public void setRing(IEquip ring) {
         this.ring = ring;
+    }
+
+    //这部分是在怪物行动时，计算人物扣血，需要计算人物现有的防御状态
+    public int calculatePhysicalDef(){
+        int basedPhysicalDef = this.physicalDef;
+        basedPhysicalDef += this.helmet.calculatePhysicalDef();
+        basedPhysicalDef += this.clothes.calculatePhysicalDef();
+        basedPhysicalDef += this.shoes.calculatePhysicalDef();
+        basedPhysicalDef += this.weapon.calculatePhysicalDef();
+        basedPhysicalDef += this.ring.calculatePhysicalDef();
+        return basedPhysicalDef;
     }
 
 }

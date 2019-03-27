@@ -1,9 +1,14 @@
 package role;
 
+import utils.StatusCode;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author: Zhou Xiaosong
  */
-public class Dragon extends Target implements Cloneable, Atkable{
+public class Dragon extends Monster implements Cloneable, Atkable{
 
     public Dragon(Builder builder){
         this.hp = builder.hp;
@@ -13,6 +18,7 @@ public class Dragon extends Target implements Cloneable, Atkable{
         this.physicalDef = builder.physicalDef;
         this.magicalDef = builder.magicalDef;
         this.critRate = builder.critRate;
+        this.difficulty = builder.difficulty;
     }
     @Override
     public void show() {
@@ -21,9 +27,11 @@ public class Dragon extends Target implements Cloneable, Atkable{
     }
 
     @Override
-    public int physicalCut() {
+    public Map<String, Object> physicalCut() {
         //TODO:龙目前只定义物理攻击
-        return this.getPhysicalAtk();
+        Map<String, Object> result = new HashMap<>();
+        result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());
+        return result;
     }
 
     public static final class Builder extends AbstractMonsterBuilder{
@@ -32,19 +40,6 @@ public class Dragon extends Target implements Cloneable, Atkable{
         public Target build() {
             return new Dragon(this);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Dragon{" +
-                "hp=" + hp +
-                ", mp=" + mp +
-                ", physicalAtk=" + physicalAtk +
-                ", magicalAtk=" + magicalAtk +
-                ", physicalDef=" + physicalDef +
-                ", magicalDef=" + magicalDef +
-                ", critRate=" + critRate +
-                '}';
     }
 
     @Override

@@ -22,4 +22,19 @@ public class StatusCode {
     public static String SUB_MDEF = "decreaseMagicalDefForMonster";
 
 
+    //这部分是战斗状态
+    public static String CHARACTER_STEP = "characterStepToExecute";
+    public static String MONSTER_STEP = "monsterStepToExecute";
+    public static String FIGHT_FINISH = "fightIsFinished";
+    public static String CHARACTER_DIE = "characterIsDied";
+
+    //掉落物品
+    public static String DROP_ITEM = "fightDropItem";
+    public static String DROP_EXP = "dropExperiment";
+    public static String DROP_MONEY = "dropMoney";
+
+    //怪物难度对应
+    public static int MONSTER_SIMPLE = 0;
+    public static int MONSTER_NORMAL = 1;
+    public static int MONSTER_HARD = 2;
 }

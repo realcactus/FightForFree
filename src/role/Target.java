@@ -1,9 +1,14 @@
 package role;
 
+import utils.StatusCode;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 可选目标类，可选目标包含角色、怪物，他们有相同的部分
  */
-public abstract class Target {
+public abstract class Target implements Atkable{
     //气血值
     protected int hp;
     //魔法值
@@ -79,5 +84,12 @@ public abstract class Target {
 
     public void setCritRate(double critRate) {
         this.critRate = critRate;
+    }
+
+    //物理攻击！一般情况下人物和怪物都能进行物理攻击，人物的物理攻击需要加上装备加成，会在子类重写
+    public Map<String, Object> physicalCut(){
+        Map<String, Object> result = new HashMap<>();
+        result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());
+        return result;
     }
 }
