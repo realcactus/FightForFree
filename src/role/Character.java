@@ -11,6 +11,7 @@ import skill.ISkill;
 import utils.StatusCode;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -51,6 +52,12 @@ public abstract class Character extends Target{
     protected ISkill skill2;
     protected ISkill skill3;
     protected ISkill skill4;
+
+    //TODO:角色背包实际上应该能放装备、药品、技能书、宝石等等，这里逻辑先写装备背包与技能背包
+    //装备背包
+    protected List<IEquip> equipBag;
+    //技能背包
+    protected List<ISkill> skillBag;
 
     //释放单个技能，返回状态集合
     public Map<String,Object> excuteSkill(Character character, ISkill skill){
@@ -243,6 +250,22 @@ public abstract class Character extends Target{
 
     public void setRing(IEquip ring) {
         this.ring = ring;
+    }
+
+    public List<IEquip> getEquipBag() {
+        return equipBag;
+    }
+
+    public void setEquipBag(List<IEquip> equipBag) {
+        this.equipBag = equipBag;
+    }
+
+    public List<ISkill> getSkillBag() {
+        return skillBag;
+    }
+
+    public void setSkillBag(List<ISkill> skillBag) {
+        this.skillBag = skillBag;
     }
 
     //计算人物带上装备后的防御状态

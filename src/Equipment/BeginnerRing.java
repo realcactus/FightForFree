@@ -59,4 +59,13 @@ public class BeginnerRing extends Ring{
     public String description() {
         return "初识之戒";
     }
+
+    @Override
+    public String toString() {
+        return "BeginnerRing{" +
+                "bloodSuck=" + bloodSuck +
+                ", critRate=" + critRate +
+                ", mp=" + mp +
+                '}';
+    }
 }

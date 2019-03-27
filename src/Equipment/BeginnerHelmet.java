@@ -57,4 +57,12 @@ public class BeginnerHelmet extends Helmet{
     public String description() {
         return "初识头盔";
     }
+
+    @Override
+    public String toString() {
+        return "BeginnerHelmet{" +
+                "hp=" + hp +
+                ", magicalDef=" + magicalDef +
+                '}';
+    }
 }

@@ -6,7 +6,9 @@ import skill.ISkill;
 import skill.SimpleCut;
 import utils.StatusCode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 /**
  * @Author: Zhou Xiaosong
@@ -21,6 +23,28 @@ public class FightInteraction {
     //这里写一个测试
     public static void main(String[] args){
         Character fighter = new WarriorFactory().createCharacter();
+        //设置装备背包
+        fighter.setEquipBag(new ArrayList<>());
+        fighter.getEquipBag().add(new SecretSword());
+        fighter.getEquipBag().add(new SecretSword());
+        fighter.getEquipBag().add(new SecretSword());
+
+        fighter.setSkillBag(new ArrayList<>());
+        fighter.getSkillBag().add(new SimpleCut());
+
+        //战斗前，看一下背包情况
+        System.out.println("------------战斗前看看背包---------------");
+        List<IEquip> bagBefore = fighter.getEquipBag();
+        for(IEquip obj:bagBefore){
+            System.out.println(obj.description()+obj.toString());
+        }
+        System.out.println("------------技能背包---------------");
+        List<ISkill> bagSkill = fighter.getSkillBag();
+        for(ISkill obj:bagSkill){
+            System.out.println(obj.toString());
+        }
+
+
         ISkill skill = new SimpleCut();
         IEquip weapon = new SecretSword();
         IEquip clothes = new BeginnerClothes();
@@ -99,9 +123,22 @@ public class FightInteraction {
         //战斗结束
         // 恢复备忘录备份的数据
         fighter.recover(characterStateManage.getMemento());
+//        System.out.println(fighter);
+
         System.out.println("-----收获------");
         System.out.println(resultValues);
-
+//        System.out.println(resultValues.get(StatusCode.DROP_ITEM));
+        List<Object> items = (List<Object>) resultValues.get(StatusCode.DROP_ITEM);
+        for(Object obj:items){
+            if(obj instanceof IEquip){
+                fighter.getEquipBag().add((IEquip) obj);
+            }
+        }
+        System.out.println("------------战斗后看看背包---------------");
+        List<IEquip> bagAfter = fighter.getEquipBag();
+        for(IEquip obj:bagAfter){
+            System.out.println(obj.description()+obj.toString());
+        }
 
     }
 

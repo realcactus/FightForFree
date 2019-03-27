@@ -57,4 +57,12 @@ public class BeginnerClothes extends Clothes{
     public String description() {
         return "初识之衣";
     }
+
+    @Override
+    public String toString() {
+        return "BeginnerClothes{" +
+                "hp=" + hp +
+                ", physicalDef=" + physicalDef +
+                '}';
+    }
 }

@@ -15,10 +15,12 @@ public class SecretSword extends Weapon {
         this.physicalAtk = 50;
         this.magicalAtk = 20;
     }
+
     @Override
     public String toString() {
         return "SecretSword{" +
-                "physicalAtk=" + physicalAtk +
+                "critRate=" + critRate +
+                ", physicalAtk=" + physicalAtk +
                 ", magicalAtk=" + magicalAtk +
                 '}';
     }
