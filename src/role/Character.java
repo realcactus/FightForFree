@@ -135,6 +135,24 @@ public abstract class Character extends Target{
         }
     }
 
+    //实现备忘录方法
+    public CharacterStateMemento saveMemento(){
+        return (new CharacterStateMemento(this.hp,this.mp,this.physicalAtk,this.magicalAtk,
+                this.physicalDef,this.magicalDef,this.critRate,this.bloodSucking));
+    }
+
+    //实现备忘录恢复方法
+    public void recover(CharacterStateMemento characterStateMemento){
+        this.hp = characterStateMemento.getHp();
+        this.mp = characterStateMemento.getMp();
+        this.physicalAtk = characterStateMemento.getPhysicalAtk();
+        this.magicalAtk = characterStateMemento.getMagicalAtk();
+        this.physicalDef = characterStateMemento.getPhysicalDef();
+        this.magicalDef = characterStateMemento.getMagicalDef();
+        this.critRate = characterStateMemento.getCritRate();
+        this.bloodSucking = characterStateMemento.getBloodSucking();
+    }
+
 
     public int getLevel() {
         return level;
@@ -233,7 +251,7 @@ public abstract class Character extends Target{
         this.ring = ring;
     }
 
-    //这部分是在怪物行动时，计算人物扣血，需要计算人物现有的防御状态
+    //计算人物带上装备后的防御状态
     public int calculatePhysicalDef(){
         int basedPhysicalDef = this.physicalDef;
         basedPhysicalDef += this.helmet.calculatePhysicalDef();
@@ -242,6 +260,83 @@ public abstract class Character extends Target{
         basedPhysicalDef += this.weapon.calculatePhysicalDef();
         basedPhysicalDef += this.ring.calculatePhysicalDef();
         return basedPhysicalDef;
+    }
+
+    //计算人物在带上装备后的物理攻击力
+    public int calculatePhysicalAtk(){
+        int basePhysicalAtk = this.physicalAtk;
+        basePhysicalAtk += this.helmet.calculatePhysicalAtk();
+        basePhysicalAtk += this.clothes.calculatePhysicalAtk();
+        basePhysicalAtk += this.shoes.calculatePhysicalAtk();
+        basePhysicalAtk += this.weapon.calculatePhysicalAtk();
+        basePhysicalAtk += this.ring.calculatePhysicalAtk();
+        return basePhysicalAtk;
+    }
+
+    //计算人物在带上装备后的法术攻击力
+    public int calculateMagicalAtk(){
+        int baseMagicalAtk = this.magicalAtk;
+        baseMagicalAtk += this.helmet.calculateMagicalAtk();
+        baseMagicalAtk += this.clothes.calculateMagicalAtk();
+        baseMagicalAtk += this.shoes.calculateMagicalAtk();
+        baseMagicalAtk += this.weapon.calculateMagicalAtk();
+        baseMagicalAtk += this.ring.calculateMagicalAtk();
+        return baseMagicalAtk;
+    }
+
+    //计算人物在带上装备后的法术防御
+    public int calculateMagicalDef(){
+        int baseMagicalDef = this.magicalDef;
+        baseMagicalDef += this.helmet.calculateMagicalDef();
+        baseMagicalDef += this.clothes.calculateMagicalDef();
+        baseMagicalDef += this.shoes.calculateMagicalDef();
+        baseMagicalDef += this.weapon.calculateMagicalDef();
+        baseMagicalDef += this.ring.calculateMagicalDef();
+        return baseMagicalDef;
+    }
+
+    //计算人物在带上装备后的气血
+    public int calculateHp(){
+        int baseHp = this.hp;
+        baseHp += this.helmet.calculateHp();
+        baseHp += this.clothes.calculateHp();
+        baseHp += this.shoes.calculateHp();
+        baseHp += this.weapon.calculateHp();
+        baseHp += this.ring.calculateHp();
+        return baseHp;
+    }
+
+    //计算人物在带上装备后的蓝
+    public int calculateMp(){
+        int baseMp = this.mp;
+        baseMp += this.helmet.calculateMp();
+        baseMp += this.clothes.calculateMp();
+        baseMp += this.shoes.calculateMp();
+        baseMp += this.weapon.calculateMp();
+        baseMp += this.ring.calculateMp();
+        return baseMp;
+    }
+
+    //计算人物在带上装备后的暴击率
+    public double calculateCritRate(){
+        double baseCrit = this.critRate;
+        baseCrit += this.helmet.calculateCritRate();
+        baseCrit += this.clothes.calculateCritRate();
+        baseCrit += this.shoes.calculateCritRate();
+        baseCrit += this.weapon.calculateCritRate();
+        baseCrit += this.ring.calculateCritRate();
+        return baseCrit;
+    }
+
+    //计算人物在带上装备后的吸血率
+    public double calculateSuckBloodRate(){
+        double baseSuckBlood = this.bloodSucking;
+        baseSuckBlood += this.helmet.calculateBloodSucking();
+        baseSuckBlood += this.clothes.calculateBloodSucking();
+        baseSuckBlood += this.shoes.calculateBloodSucking();
+        baseSuckBlood += this.weapon.calculateBloodSucking();
+        baseSuckBlood += this.ring.calculateBloodSucking();
+        return baseSuckBlood;
     }
 
 }

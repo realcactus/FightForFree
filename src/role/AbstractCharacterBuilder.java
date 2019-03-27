@@ -14,6 +14,7 @@ public abstract class AbstractCharacterBuilder implements CharacterBuilder{
     protected int physicalDef;
     protected int magicalDef;
     protected double critRate;
+    protected double bloodSuck;
 
     @Override
     public AbstractCharacterBuilder level(int level) {
@@ -72,6 +73,12 @@ public abstract class AbstractCharacterBuilder implements CharacterBuilder{
     @Override
     public AbstractCharacterBuilder critRate(double critRate) {
         this.critRate = critRate;
+        return this;
+    }
+
+    @Override
+    public CharacterBuilder suckBlood(double suckBlood) {
+        this.bloodSuck = suckBlood;
         return this;
     }
 }

@@ -48,54 +48,28 @@ public class ExcuteSkillAdapter implements Skillable{
             double matkPercentage = ((DamageSkill) skill).calculateMatkPercentage();
             //这里计算人物的装备属性加成
             //关注的有：物理攻击、法术攻击、吸血、暴击
+            //但是技能暂时不带吸血暴击效果
+            //**********************************************************
+            //这里非常重要一点，就是在这里技能计算百分比，直接按照人物的属性来，不看装备
+            //因为用了备忘录模式，已经是叠加过装备状态的
             int physicalAtk = character.getPhysicalAtk();
             int magicalAtk = character.getMagicalAtk();
-            double blookSuck = character.getBloodSucking();
-            double critRate = character.getCritRate();
-            //物理攻击
-            int physicalAtkAppend = character.getHelmet().calculatePhysicalAtk()
-                    +character.getClothes().calculatePhysicalAtk()
-                    +character.getShoes().calculatePhysicalAtk()
-                    +character.getWeapon().calculatePhysicalAtk()
-                    +character.getRing().calculatePhysicalAtk();
-            physicalAtk += physicalAtkAppend;
             if(atkPercentage > 0){
                 int damageAtk = fixedDamage + (int)(physicalAtk * atkPercentage);
                 values.put(StatusCode.ATK_DAMAGE,damageAtk);
             }
             //魔法攻击
-            int magicalAtkAppend = character.getHelmet().calculateMagicalAtk()
-                    +character.getClothes().calculateMagicalAtk()
-                    +character.getShoes().calculateMagicalAtk()
-                    +character.getWeapon().calculateMagicalAtk()
-                    +character.getRing().calculateMagicalAtk();
-            magicalAtk += magicalAtkAppend;
             if(matkPercentage > 0){
                 int damageMatk = fixedDamage + (int)(magicalAtk * matkPercentage);
                 values.put(StatusCode.MATK_DAMAGE,damageMatk);
             }
             //吸血
-            //如果攻击带吸血效果，那么先产生输出，然后更新角色状态
-            double bloodSuckAppend = character.getHelmet().calculateBloodSucking()
-                    +character.getClothes().calculateBloodSucking()
-                    +character.getShoes().calculateBloodSucking()
-                    +character.getWeapon().calculateBloodSucking()
-                    +character.getRing().calculateBloodSucking();
-            blookSuck += bloodSuckAppend;
-            if (blookSuck > 0){
-                values.put(StatusCode.ADD_S_BLOOD, blookSuck);
-            }
+            //如果攻击带吸血效果，那么先产生输出，然后更新角色状态（错）
+            //这个接口当初设计是错误的，更新角色状态应该在战斗上下文类更新
+
             //暴击
             //技能也可能是自带暴击效果的
-            double critRateAppend = character.getHelmet().calculateCritRate()
-                    +character.getClothes().calculateCritRate()
-                    +character.getShoes().calculateCritRate()
-                    +character.getWeapon().calculateCritRate()
-                    +character.getRing().calculateCritRate();
-            critRate += critRateAppend;
-            if(critRate > 0){
-                values.put(StatusCode.ADD_CRIT, critRate);
-            }
+            //TODO:因为技能携带吸血和暴击效果的目前还没设计，这里先不写
         }
         else if (skill instanceof GainSkill){
             //增益技能

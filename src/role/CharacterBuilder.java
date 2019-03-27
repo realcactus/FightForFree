@@ -11,4 +11,5 @@ public interface CharacterBuilder extends TargetBuilder {
     CharacterBuilder level(int level);
     CharacterBuilder experience(int experience);
     CharacterBuilder money(int money);
+    CharacterBuilder suckBlood(double suckBlood);
 }
