@@ -17,6 +17,8 @@ public class StatusCode {
     public static String ATK_DAMAGE = "atkDamageForMonsterToCalculate";
     //这里是先返回一个魔法伤害，然后在战斗业务上根据怪物的魔法防御计算怪物的状态更新
     public static String MATK_DAMAGE = "matkDamageForMonsterToCalculate";
+    //这里设计上还是有一个失误，平砍应该设置为单独的状态，不应该和ATK_DAMAGE混用
+    public static String CUT_A = "physicalSimplePingA";
 
     public static String SUB_PDEF = "decreasePhysicalDefForMonster";
     public static String SUB_MDEF = "decreaseMagicalDefForMonster";

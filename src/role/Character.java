@@ -65,12 +65,6 @@ public abstract class Character extends Target{
         //返回物理攻击产生的数值
         int physicalAtk = this.getPhysicalAtk();
         //物理攻击
-        int physicalAtkAppend = this.getHelmet().calculatePhysicalAtk()
-                +this.getClothes().calculatePhysicalAtk()
-                +this.getShoes().calculatePhysicalAtk()
-                +this.getWeapon().calculatePhysicalAtk()
-                +this.getRing().calculatePhysicalAtk();
-        physicalAtk += physicalAtkAppend;
         result.put(StatusCode.ATK_DAMAGE, physicalAtk);
         return result;
     }

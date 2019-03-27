@@ -87,6 +87,7 @@ public abstract class Target implements Atkable{
     }
 
     //物理攻击！一般情况下人物和怪物都能进行物理攻击，人物的物理攻击需要加上装备加成，会在子类重写
+    //本来人物是要在子类重写，但因为加了备忘录，套了一层人物带上装备后的对象，因此可以用这个方法
     public Map<String, Object> physicalCut(){
         Map<String, Object> result = new HashMap<>();
         result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());

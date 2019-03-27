@@ -37,6 +37,8 @@ public class FightInteraction {
         fighter.setRing(ring);
 
         Monster monster = new SimpleMonsterFactory().createSlime();
+        //测试一下mp情况
+//        monster.setHp(1000000);
 
         FightState state = new FightState();
         //初始化角色行动
