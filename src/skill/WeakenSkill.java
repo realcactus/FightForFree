@@ -7,7 +7,7 @@ package skill;
 /**
  * 削弱技能
  */
-public abstract class WeakenSkill implements ISkill {
+public abstract class WeakenSkill extends ISkill {
     @Override
     public int calculateFixedDamage() {
         return 0;

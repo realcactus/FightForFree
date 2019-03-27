@@ -7,7 +7,7 @@ package role;
 /**
  * 精灵
  */
-public class Elf extends Target implements Cloneable{
+public class Elf extends Target implements Cloneable, Atkable{
     private Elf(Builder builder){
         this.hp = builder.hp;
         this.mp = builder.mp;
@@ -35,6 +35,13 @@ public class Elf extends Target implements Cloneable{
                 ", critRate=" + critRate +
                 '}';
     }
+
+    @Override
+    public int physicalCut() {
+        //TODO：精灵目前只定义物理攻击
+        return this.getPhysicalAtk();
+    }
+
     public static final class Builder extends AbstractMonsterBuilder{
 
         @Override

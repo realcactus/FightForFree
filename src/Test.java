@@ -1,23 +1,11 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Test{
-    private String id;
-    private int value;
-
-    public String getId() {
-        return id;
+    public static void main(String[] args){
+        Map<String, Object> result = new HashMap<>();
+        result.put("hp",1);
+        result.put("critRate",0.03);
+        System.out.println(result);
     }
-
-    public Test setId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public Test setValue(int value) {
-        this.value = value;
-        return this;
-    }
-
 }

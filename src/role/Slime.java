@@ -3,7 +3,7 @@ package role;
 /**
  * @Author: Zhou Xiaosong
  */
-public class Slime extends Target implements Cloneable{
+public class Slime extends Target implements Cloneable, Atkable{
     private Slime(Builder builder){
         this.hp = builder.hp;
         this.mp = builder.mp;
@@ -32,6 +32,13 @@ public class Slime extends Target implements Cloneable{
                 ", critRate=" + critRate +
                 '}';
     }
+
+    @Override
+    public int physicalCut() {
+        //TODO:史莱姆目前只定义物理攻击atk
+        return this.getPhysicalAtk();
+    }
+
     public static final class Builder extends AbstractMonsterBuilder{
 
         @Override
