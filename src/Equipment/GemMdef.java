@@ -56,6 +56,11 @@ public class GemMdef implements IEquipDecorator{
     }
 
     @Override
+    public int calculateSellMoney() {
+        return equip.calculateMagicalDef() + 700;
+    }
+
+    @Override
     public String description() {
         return equip.description()+"+翡翠石";
     }

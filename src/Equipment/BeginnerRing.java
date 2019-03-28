@@ -56,6 +56,11 @@ public class BeginnerRing extends Ring{
     }
 
     @Override
+    public int calculateSellMoney() {
+        return 1500;
+    }
+
+    @Override
     public String description() {
         return "初识之戒";
     }

@@ -56,6 +56,11 @@ public class GemPatk implements IEquipDecorator {
     }
 
     @Override
+    public int calculateSellMoney() {
+        return equip.calculateSellMoney() + 1000;
+    }
+
+    @Override
     public String description() {
         return equip.description()+"+太阳石";
     }

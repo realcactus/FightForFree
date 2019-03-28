@@ -54,6 +54,11 @@ public class GiantAxe extends Weapon {
     }
 
     @Override
+    public int calculateSellMoney() {
+        return 3000;
+    }
+
+    @Override
     public String description() {
         return "巨人之斧";
     }

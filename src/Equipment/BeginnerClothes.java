@@ -54,6 +54,11 @@ public class BeginnerClothes extends Clothes{
     }
 
     @Override
+    public int calculateSellMoney() {
+        return 1500;
+    }
+
+    @Override
     public String description() {
         return "初识之衣";
     }

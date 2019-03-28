@@ -17,6 +17,8 @@ public interface IEquip {
     double calculateCritRate();
     //吸血
     double calculateBloodSucking();
+    //装备出售系统，配合装饰模式
+    int calculateSellMoney();
 
     /**
      * 装备描述

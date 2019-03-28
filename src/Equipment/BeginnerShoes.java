@@ -53,6 +53,11 @@ public class BeginnerShoes extends Shoes {
     }
 
     @Override
+    public int calculateSellMoney() {
+        return 1500;
+    }
+
+    @Override
     public String description() {
         return "初识之鞋";
     }

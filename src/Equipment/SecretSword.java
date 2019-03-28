@@ -11,6 +11,9 @@ package Equipment;
 public class SecretSword extends Weapon {
     //自带暴击率0.1
     private double critRate = 0.1;
+
+
+
     public SecretSword(){
         this.physicalAtk = 50;
         this.magicalAtk = 20;
@@ -63,6 +66,16 @@ public class SecretSword extends Weapon {
     @Override
     public double calculateBloodSucking() {
         return 0;
+    }
+
+
+    /**
+     * 隐秘之剑卖3000！
+     * @return
+     */
+    @Override
+    public int calculateSellMoney() {
+        return 3000;
     }
 
     @Override

@@ -56,6 +56,11 @@ public class GemPdef implements IEquipDecorator {
     }
 
     @Override
+    public int calculateSellMoney() {
+        return equip.calculateSellMoney() + 800;
+    }
+
+    @Override
     public String description() {
         return equip.description()+"+月亮石";
     }

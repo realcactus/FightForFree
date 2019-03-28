@@ -55,6 +55,12 @@ public class GemHp implements IEquipDecorator{
         return equip.calculateBloodSucking();
     }
 
+
+    @Override
+    public int calculateSellMoney() {
+        return equip.calculateSellMoney() + 500;
+    }
+
     @Override
     public String description() {
         return equip.description()+"+光芒石";

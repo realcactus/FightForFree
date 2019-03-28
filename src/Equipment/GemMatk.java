@@ -56,6 +56,11 @@ public class GemMatk implements IEquipDecorator {
     }
 
     @Override
+    public int calculateSellMoney() {
+        return equip.calculateSellMoney() + 1000;
+    }
+
+    @Override
     public String description() {
         return equip.description()+"+舍利子";
     }

@@ -56,6 +56,11 @@ public class GemMp implements IEquipDecorator {
     }
 
     @Override
+    public int calculateSellMoney() {
+        return equip.calculateSellMoney() + 500;
+    }
+
+    @Override
     public String description() {
         return equip.description()+"+蓝宝石";
     }
