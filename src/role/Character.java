@@ -45,6 +45,8 @@ public abstract class Character extends Target{
 
 
 
+    protected String nickName;
+
     //桥接一身的装备
     //头盔
     protected IEquip helmet;
@@ -291,6 +293,14 @@ public abstract class Character extends Target{
 
     public void setSkillBag(List<ISkill> skillBag) {
         this.skillBag = skillBag;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     //计算人物带上装备后的防御状态

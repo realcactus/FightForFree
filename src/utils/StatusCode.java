@@ -39,4 +39,11 @@ public class StatusCode {
     public static int MONSTER_SIMPLE = 0;
     public static int MONSTER_NORMAL = 1;
     public static int MONSTER_HARD = 2;
+
+
+
+    //这部分是注册状态
+    public static int USER_EXISTED = -1;
+    public static int NICKNAME_EXISTED = -2;
+    public static int REGISTER_SUCCESS = 0;
 }
