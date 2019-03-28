@@ -22,6 +22,28 @@ public class Warrior extends Character implements Cloneable{
         System.out.println("I am a warrior");
         System.out.println(toString());
     }
+
+    /**
+     * 升级方法
+     */
+    @Override
+    public int checkLevelUp() {
+        int needExp = this.experienceTable[this.level];
+        if(this.experience >= needExp){
+            this.experience -= needExp;
+            this.level += 1;
+            //为什么要下放到这里写，因为每一个职业升级所加的数值是不一样的
+            this.hp += 100;
+            this.mp += 100;
+            this.physicalAtk += 100;
+            this.physicalDef += 100;
+            this.magicalAtk += 20;
+            this.magicalDef += 20;
+            return 0;
+        }
+        return -1;
+    }
+
     public static final class Builder extends AbstractCharacterBuilder{
         @Override
         public Target build() {

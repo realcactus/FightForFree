@@ -15,13 +15,17 @@ package skill;
  */
 public abstract class ISkill {
     //技能等级
-    protected int level = 1;
-    //升级所需金钱
-    protected int upLevelMoney = 0;
+    protected int level = 0;
+
     //施放技能所需魔法
     protected int needMp = 0;
 
-    public abstract int upLevel();
+    /**
+     * 升级函数
+     * @return 返回0 升级成功，返回-1 升级失败
+     */
+    public abstract void upLevel();
+    public abstract int getLevelUpNeedMoney();
     public abstract int calculateFixedDamage();
     public abstract double calculateAtkPercentage();
     public abstract double calculateMatkPercentage();
@@ -39,13 +43,6 @@ public abstract class ISkill {
         this.level = level;
     }
 
-    public int getUpLevelMoney() {
-        return upLevelMoney;
-    }
-
-    public void setUpLevelMoney(int upLevelMoney) {
-        this.upLevelMoney = upLevelMoney;
-    }
 
     public int getNeedMp() {
         return needMp;

@@ -23,6 +23,17 @@ public abstract class Character extends Target{
     protected int level;
     protected int experience;
     protected int money;
+    //隐藏属性
+    protected double bloodSucking = 0.0;
+
+    //升级表，experienceTable[i]表示从i级升到i+1级需要多少经验，目前最高只有5级
+    protected int[] experienceTable = {200,1000,5000,20000,100000};
+
+    /**
+     * 升级方法
+     * @return 返回0，则升级成功。返回-1，则经验不足。
+     */
+    public abstract int checkLevelUp();
 
     public double getBloodSucking() {
         return bloodSucking;
@@ -32,8 +43,7 @@ public abstract class Character extends Target{
         this.bloodSucking = bloodSucking;
     }
 
-    //隐藏属性
-    protected double bloodSucking = 0.0;
+
 
     //桥接一身的装备
     //头盔
@@ -74,6 +84,21 @@ public abstract class Character extends Target{
         //物理攻击
         result.put(StatusCode.ATK_DAMAGE, physicalAtk);
         return result;
+    }
+
+    //增长经验
+    public void increaseExperience(int appendExperience){
+        this.experience += appendExperience;
+    }
+
+    //增长金钱
+    public void increaseMoney(int appendMoney){
+        this.money += appendMoney;
+    }
+
+    //花钱
+    public void spendMoney(int spendMoney){
+        this.money -= spendMoney;
     }
 
     //根据状态集合更新状态

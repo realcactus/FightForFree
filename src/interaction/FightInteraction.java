@@ -60,7 +60,7 @@ public class FightInteraction {
         fighter.setShoes(shoes);
         fighter.setRing(ring);
 
-        Monster monster = new SimpleMonsterFactory().createSlime();
+        Monster monster = new SimpleMonsterFactory().createElf();
         //测试一下mp情况
 //        monster.setHp(1000000);
 
@@ -87,6 +87,13 @@ public class FightInteraction {
         fighter.setCritRate(fighter.calculateCritRate());
         fighter.setBloodSucking(fighter.calculateSuckBloodRate());
 
+
+
+        if(fighter.getMoney() > skill.getLevelUpNeedMoney()){
+            //技能升个级
+            fighter.spendMoney(skill.getLevelUpNeedMoney());
+            skill.upLevel();
+        }
         while (true){
             if(state.getValue() == StatusCode.CHARACTER_DIE){
                 //角色死亡，退出
@@ -123,7 +130,6 @@ public class FightInteraction {
         //战斗结束
         // 恢复备忘录备份的数据
         fighter.recover(characterStateManage.getMemento());
-//        System.out.println(fighter);
 
         System.out.println("-----收获------");
         System.out.println(resultValues);
@@ -134,6 +140,16 @@ public class FightInteraction {
                 fighter.getEquipBag().add((IEquip) obj);
             }
         }
+        fighter.increaseExperience((Integer) resultValues.get(StatusCode.DROP_EXP));
+        fighter.increaseMoney((Integer) resultValues.get(StatusCode.DROP_MONEY));
+        System.out.println("----------状态----------");
+        int levelBefore = fighter.getLevel();
+        fighter.checkLevelUp();
+        if(fighter.getLevel() > levelBefore){
+            System.out.println("-------------升级---------------");
+        }
+        System.out.println(fighter);
+
         System.out.println("------------战斗后看看背包---------------");
         List<IEquip> bagAfter = fighter.getEquipBag();
         for(IEquip obj:bagAfter){
