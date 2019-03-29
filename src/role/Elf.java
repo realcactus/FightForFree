@@ -4,7 +4,7 @@ package role;
  * @Author: Zhou Xiaosong
  */
 
-import utils.StatusCode;
+import utils.GameCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +33,7 @@ public class Elf extends Monster implements Cloneable, Atkable{
     public Map<String, Object> physicalCut() {
         //TODO：精灵目前只定义物理攻击
         Map<String, Object> result = new HashMap<>();
-        result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());
+        result.put(GameCode.ATK_DAMAGE, this.getPhysicalAtk());
         return result;
     }
 

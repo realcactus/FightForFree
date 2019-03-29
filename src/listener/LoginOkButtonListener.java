@@ -1,5 +1,9 @@
 package listener;
 
+import role.Character;
+import user.User;
+import utils.CharacterSaveHelper;
+import utils.GameCode;
 import utils.LoginFileHandler;
 
 import javax.swing.*;
@@ -32,8 +36,14 @@ public class LoginOkButtonListener implements ActionListener {
     public void validate(JTextField jt1, JTextField jt2){
         String userName = jt1.getText();
         String userPassword = jt2.getText();
-        if(LoginFileHandler.UserValidate(userName,userPassword,fileUrl)){
+        String result = LoginFileHandler.UserValidate(userName,userPassword,fileUrl);
+        if(result != ""){
             JOptionPane.showMessageDialog(null,"登录成功！");
+            //登录成功之后，需要把角色属性加载进来
+            User user = User.getInstance();
+            user.setUserName(jt1.getText());
+            user.setCharacter(new CharacterSaveHelper(GameCode.CHARACTER_FILE+"/"+result).getObjFromFile());
+            System.out.println(user.getCharacter());
         } else {
             JOptionPane.showMessageDialog(null,"账户名或密码错误！");
         }

@@ -4,10 +4,14 @@ package role;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 刺客
  */
 public class Assassin extends Character implements Cloneable {
+
+    private static final long serialVersionUID = 9118752325582798626L;
 
     public Assassin(Builder builder) {
         this.level = builder.level;
@@ -28,21 +32,6 @@ public class Assassin extends Character implements Cloneable {
         System.out.println(toString());
     }
 
-    @Override
-    public String toString() {
-        return "Assassin{" +
-                "level=" + level +
-                ", experience=" + experience +
-                ", money=" + money +
-                ", hp=" + hp +
-                ", mp=" + mp +
-                ", physicalAtk=" + physicalAtk +
-                ", magicalAtk=" + magicalAtk +
-                ", physicalDef=" + physicalDef +
-                ", magicalDef=" + magicalDef +
-                ", critRate=" + critRate +
-                '}';
-    }
 
     public static final class Builder extends AbstractCharacterBuilder{
         @Override

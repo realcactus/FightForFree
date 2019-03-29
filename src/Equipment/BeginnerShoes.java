@@ -4,10 +4,14 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 初识之鞋
  */
-public class BeginnerShoes extends Shoes {
+public class BeginnerShoes extends Shoes implements Serializable {
+    private static final long serialVersionUID = -7567597264127249368L;
+
     public BeginnerShoes() {
         this.hp = 200;
     }

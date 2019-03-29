@@ -8,7 +8,7 @@ import Equipment.*;
 import role.*;
 import role.Character;
 import skill.ISkill;
-import utils.StatusCode;
+import utils.GameCode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,7 +87,7 @@ public class FightState {
         //根据怪物来判断掉落经验和金钱
         int diffculty = monster.getDifficulty();
 
-        if(diffculty==StatusCode.MONSTER_SIMPLE){
+        if(diffculty== GameCode.MONSTER_SIMPLE){
             if (monster instanceof Slime){
                 rewardExperience = 100;
                 rewardMoney = 100;
@@ -101,7 +101,7 @@ public class FightState {
                 rewardMoney = 10000;
             }
         }
-        else if(diffculty == StatusCode.MONSTER_NORMAL){
+        else if(diffculty == GameCode.MONSTER_NORMAL){
             if (monster instanceof Slime){
                 rewardExperience = 500;
                 rewardMoney = 500;
@@ -115,7 +115,7 @@ public class FightState {
                 rewardMoney = 50000;
             }
         }
-        else if (diffculty == StatusCode.MONSTER_HARD){
+        else if (diffculty == GameCode.MONSTER_HARD){
             if (monster instanceof Slime){
                 rewardExperience = 1000;
                 rewardMoney = 1000;
@@ -131,9 +131,9 @@ public class FightState {
         }
 
         Map<String,Object> result = new HashMap<>();
-        result.put(StatusCode.DROP_ITEM, rewardsItems);
-        result.put(StatusCode.DROP_EXP, rewardExperience);
-        result.put(StatusCode.DROP_MONEY,rewardMoney);
+        result.put(GameCode.DROP_ITEM, rewardsItems);
+        result.put(GameCode.DROP_EXP, rewardExperience);
+        result.put(GameCode.DROP_MONEY,rewardMoney);
         return result;
     }
 

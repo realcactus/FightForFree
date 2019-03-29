@@ -1,7 +1,7 @@
 package view;
 
+import utils.GameCode;
 import utils.LoginFileHandler;
-import utils.StatusCode;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +25,8 @@ public class RegisterFrame extends JFrame {
     private JTextField nickName;
     private String[] characterList = {"战士","法师","刺客"};
 
-    private String fileUrl = "./files/user";
+//    private String fileUrl = "./files/user";
+//    private String characterFileUrl = "./files/character";
 
     public RegisterFrame() {
         this.c = this.getContentPane();
@@ -93,6 +94,23 @@ public class RegisterFrame extends JFrame {
                 String userName = username.getText();
                 String userPassword = new String(password.getPassword());
                 String userNickName = nickName.getText();
+                String characterFileUrl = GameCode.CHARACTER_FILE + "/" + userNickName;
+                String career = jComboBox.getSelectedItem().toString();
+                int characterCareer = -1;
+                switch (career){
+                    case "战士":
+                        characterCareer = GameCode.CAREER_WARRIOR;
+                        System.out.println("战士选择");
+                        break;
+                    case "法师":
+                        characterCareer = GameCode.CAREER_MAGICIAN;
+                        System.out.println("法师选择");
+                        break;
+                    case "刺客":
+                        characterCareer = GameCode.CAREER_ASSASSIN;
+                        System.out.println("刺客选择");
+                        break;
+                }
                 System.out.println(userName+" "+userPassword);
                 if(userName.equals("") || userPassword.equals("")){
                     JOptionPane.showMessageDialog(null, "用户名或密码不能为空");
@@ -107,13 +125,13 @@ public class RegisterFrame extends JFrame {
                     JOptionPane.showMessageDialog(null, "昵称不能超过8个字！！");
                 }
                 else {
-                    if(LoginFileHandler.UserRegister(userName,userPassword,userNickName,fileUrl)== StatusCode.REGISTER_SUCCESS){
+                    if(LoginFileHandler.UserRegister(userName,userPassword,userNickName,characterCareer,GameCode.LOGIN_FILE,characterFileUrl)== GameCode.REGISTER_SUCCESS){
                         JOptionPane.showMessageDialog(null, "注册成功");
                         //关闭注册窗体
                         dispose();
-                    } else if(LoginFileHandler.UserRegister(userName,userPassword,userNickName,fileUrl)== StatusCode.USER_EXISTED){
+                    } else if(LoginFileHandler.UserRegister(userName,userPassword,userNickName,characterCareer,GameCode.LOGIN_FILE,characterFileUrl)== GameCode.USER_EXISTED){
                         JOptionPane.showMessageDialog(null,"用户名已存在！");
-                    } else if(LoginFileHandler.UserRegister(userName,userPassword,userNickName,fileUrl)== StatusCode.NICKNAME_EXISTED){
+                    } else if(LoginFileHandler.UserRegister(userName,userPassword,userNickName,characterCareer,GameCode.LOGIN_FILE,characterFileUrl)== GameCode.NICKNAME_EXISTED){
                         JOptionPane.showMessageDialog(null,"该昵称已存在！");
                     }
                 }

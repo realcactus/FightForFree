@@ -8,8 +8,10 @@ import Equipment.*;
 import interaction.ExcuteSkillAdapter;
 import interaction.Skillable;
 import skill.ISkill;
-import utils.StatusCode;
+import utils.GameCode;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ import java.util.Map;
  */
 
 //基本角色最多携带4个技能，后面扩展可能会有能携带多个技能的角色
-public abstract class Character extends Target{
+public abstract class Character extends Target implements Serializable{
     protected int level;
     protected int experience;
     protected int money;
@@ -84,7 +86,7 @@ public abstract class Character extends Target{
         //返回物理攻击产生的数值
         int physicalAtk = this.getPhysicalAtk();
         //物理攻击
-        result.put(StatusCode.ATK_DAMAGE, physicalAtk);
+        result.put(GameCode.ATK_DAMAGE, physicalAtk);
         return result;
     }
 
@@ -106,57 +108,57 @@ public abstract class Character extends Target{
     //根据状态集合更新状态
     public void updateStatus(Map<String,Object> values){
         //攻击增加
-        if(values.containsKey(StatusCode.ADD_ATK)) {
-            int atk = (Integer) (values.get(StatusCode.ADD_ATK));
+        if(values.containsKey(GameCode.ADD_ATK)) {
+            int atk = (Integer) (values.get(GameCode.ADD_ATK));
             if(atk>0){
                 setPhysicalAtk(this.physicalAtk + atk);
             }
         }
         //魔法攻击增加
-        if(values.containsKey(StatusCode.ADD_MATK)){
-            int matk = (Integer)(values.get(StatusCode.ADD_MATK));
+        if(values.containsKey(GameCode.ADD_MATK)){
+            int matk = (Integer)(values.get(GameCode.ADD_MATK));
             if(matk > 0){
                 setMagicalAtk(this.magicalAtk + matk);
             }
         }
         //增加防御
-        if(values.containsKey(StatusCode.ADD_PDEF)){
-            int def = (Integer)(values.get(StatusCode.ADD_PDEF));
+        if(values.containsKey(GameCode.ADD_PDEF)){
+            int def = (Integer)(values.get(GameCode.ADD_PDEF));
             if(def > 0){
                 setPhysicalDef(this.physicalDef + def);
             }
         }
         //增加魔法防御
-        if(values.containsKey(StatusCode.ADD_MDEF)){
-            int mdef = (Integer)(values.get(StatusCode.ADD_MDEF));
+        if(values.containsKey(GameCode.ADD_MDEF)){
+            int mdef = (Integer)(values.get(GameCode.ADD_MDEF));
             if(mdef > 0){
                 setMagicalDef(this.magicalDef + mdef);
             }
         }
         //回复气血
-        if(values.containsKey(StatusCode.ADD_HP)){
-            int hp = (Integer)(values.get(StatusCode.ADD_HP));
+        if(values.containsKey(GameCode.ADD_HP)){
+            int hp = (Integer)(values.get(GameCode.ADD_HP));
             if (hp > 0){
                 setHp(this.hp + hp);
             }
         }
         //回复蓝
-        if(values.containsKey(StatusCode.ADD_MP)){
-            int mp = (Integer)(values.get(StatusCode.ADD_MP));
+        if(values.containsKey(GameCode.ADD_MP)){
+            int mp = (Integer)(values.get(GameCode.ADD_MP));
             if (mp > 0){
                 setMp(this.mp + mp);
             }
         }
         //增加暴击率
-        if(values.containsKey(StatusCode.ADD_CRIT)){
-            double critRate = (Double) (values.get(StatusCode.ADD_CRIT));
+        if(values.containsKey(GameCode.ADD_CRIT)){
+            double critRate = (Double) (values.get(GameCode.ADD_CRIT));
             if (critRate > 0){
                 setCritRate(this.critRate + critRate);
             }
         }
         //增加吸血率
-        if(values.containsKey(StatusCode.ADD_S_BLOOD)){
-            double suckBlood = (Double)(values.get(StatusCode.ADD_S_BLOOD));
+        if(values.containsKey(GameCode.ADD_S_BLOOD)){
+            double suckBlood = (Double)(values.get(GameCode.ADD_S_BLOOD));
             if (suckBlood > 0){
                 setBloodSucking(suckBlood);
             }
@@ -389,6 +391,36 @@ public abstract class Character extends Target{
         baseSuckBlood += this.weapon.calculateBloodSucking();
         baseSuckBlood += this.ring.calculateBloodSucking();
         return baseSuckBlood;
+    }
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                "level=" + level +
+                ", experience=" + experience +
+                ", money=" + money +
+                ", bloodSucking=" + bloodSucking +
+                ", experienceTable=" + Arrays.toString(experienceTable) +
+                ", nickName='" + nickName + '\'' +
+                ", helmet=" + helmet +
+                ", clothes=" + clothes +
+                ", shoes=" + shoes +
+                ", weapon=" + weapon +
+                ", ring=" + ring +
+                ", skill1=" + skill1 +
+                ", skill2=" + skill2 +
+                ", skill3=" + skill3 +
+                ", skill4=" + skill4 +
+                ", equipBag=" + equipBag +
+                ", skillBag=" + skillBag +
+                ", hp=" + hp +
+                ", mp=" + mp +
+                ", physicalAtk=" + physicalAtk +
+                ", magicalAtk=" + magicalAtk +
+                ", physicalDef=" + physicalDef +
+                ", magicalDef=" + magicalDef +
+                ", critRate=" + critRate +
+                '}';
     }
 
 }

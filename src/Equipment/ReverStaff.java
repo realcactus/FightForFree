@@ -4,10 +4,14 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 回响法杖
  */
-public class ReverStaff extends Weapon {
+public class ReverStaff extends Weapon implements Serializable {
+    private static final long serialVersionUID = -5352062255989628376L;
+
     public ReverStaff() {
         this.physicalAtk = 20;
         this.magicalAtk = 100;

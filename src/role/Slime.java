@@ -1,6 +1,6 @@
 package role;
 
-import utils.StatusCode;
+import utils.GameCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class Slime extends Monster implements Cloneable, Atkable{
     public Map<String, Object> physicalCut() {
         //TODO:史莱姆目前只定义物理攻击atk
         Map<String, Object> result = new HashMap<>();
-        result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());
+        result.put(GameCode.ATK_DAMAGE, this.getPhysicalAtk());
         return result;
     }
 

@@ -4,10 +4,13 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 舍利子，增加装备20点魔法攻击力
  */
-public class GemMatk implements IEquipDecorator {
+public class GemMatk implements IEquipDecorator, Serializable {
+    private static final long serialVersionUID = 4328773894468696803L;
     //维护一个装备对象
     private IEquip equip;
 

@@ -4,10 +4,13 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 翡翠石，增加法术防御20
  */
-public class GemMdef implements IEquipDecorator{
+public class GemMdef implements IEquipDecorator, Serializable {
+    private static final long serialVersionUID = -7541392853799233101L;
     //维护一个装备对象
     private IEquip equip;
 

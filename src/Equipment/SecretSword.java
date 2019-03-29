@@ -4,11 +4,14 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 隐秘之剑
  * 除了攻击之外，还附加百分之10的暴击率
  */
-public class SecretSword extends Weapon {
+public class SecretSword extends Weapon implements Serializable {
+    private static final long serialVersionUID = 5805219726207457767L;
     //自带暴击率0.1
     private double critRate = 0.1;
 

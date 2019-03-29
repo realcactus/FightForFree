@@ -4,10 +4,14 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 初识头盔
  */
-public class BeginnerHelmet extends Helmet{
+public class BeginnerHelmet extends Helmet implements Serializable {
+    private static final long serialVersionUID = 6991756654585570829L;
+
     public BeginnerHelmet() {
         this.hp = 100;
         this.magicalDef = 50;

@@ -1,5 +1,10 @@
 package utils;
 
+import Equipment.BeginnerHelmet;
+import role.*;
+import role.Character;
+import skill.SimpleCut;
+
 import java.io.*;
 
 /**
@@ -100,10 +105,10 @@ public class LoginFileHandler {
      * 		 String password--登录操作输入的密码
      * 		 String nickName--登录操作输入的昵称
      * 		 String fileUrl--需要访问的文件路径（存储本地用户名和密码的文件）
-     * 输出：若输入的userName和password相匹配，则返回true；否则返回false
+     * 输出：若输入的userName和password相匹配，则返回该用户创建的角色的昵称，否则返回空字符串
      * */
-    public static boolean UserValidate(String userName,String password,String fileUrl) {
-        boolean out = false;
+    public static String UserValidate(String userName,String password,String fileUrl) {
+        String returnValue = "";
         try {
             FileInputStream fis = new FileInputStream(fileUrl);
             InputStreamReader isr = new InputStreamReader(fis,"UTF-8");
@@ -112,7 +117,8 @@ public class LoginFileHandler {
             while((line=br.readLine()) != null) {
                 if(line.equals("un" + userName)) {
                     if(br.readLine().equals(String.valueOf(("pw"+password).hashCode()))) {
-                        out = true;
+                        String nickName = br.readLine();
+                        returnValue += nickName.substring(2);
                     }
                     //只要检索到用户名，不论密码是否匹配，都终止循环
                     break;
@@ -125,7 +131,7 @@ public class LoginFileHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return out;
+        return returnValue;
     }
 
 
@@ -136,25 +142,54 @@ public class LoginFileHandler {
      * 输入：String userName--注册操作输入的用户名
      * 		 String password--注册操作输入的密码
      * 		 String nickName--登录操作输入的昵称
+     * 		 int character--注册的时候选择的职业
      * 		 String fileUrl--需要访问的文件路径（存储本地用户名和密码的文件）
+     * 		 String characterUrl--需要访问的角色文件路径（存储角色对象）
      * 输出：若新用户注册成功，则返回0；用户名存在，则返回-1，昵称存在，则返回-2
      * */
-    public static int UserRegister(String userName,String password,String nickName,String fileUrl) {
+    public static int UserRegister(String userName,String password,String nickName,int character,String fileUrl,String characterFileUrl) {
 
         if(StringSearchLine("un" + userName, fileUrl)) {
             //用户名已存在
-            return StatusCode.USER_EXISTED;
+            return GameCode.USER_EXISTED;
         }
         else if (StringSearchLine("nk" + nickName, fileUrl)){
             //昵称已存在
-            return StatusCode.NICKNAME_EXISTED;
+            return GameCode.NICKNAME_EXISTED;
         }
         else {
             //若不存在，依次写入用户名和密码和昵称（分别加上前缀"un"和"pw"和"nk"）
             StringWriteLine("un" + userName, fileUrl);
             StringWriteLine(String.valueOf(("pw" + password).hashCode()), fileUrl);
             StringWriteLine("nk" + nickName, fileUrl);
-            return StatusCode.REGISTER_SUCCESS;
+
+            //除此之外，还需要创建一个角色，将角色存储到角色文件
+            if(character == GameCode.CAREER_WARRIOR){
+                //战士
+                Character gameCharacter = new WarriorFactory().createCharacter();
+                gameCharacter.setNickName(nickName);
+                //设置技能装备，用于测试存储
+//                gameCharacter.setSkill1(new SimpleCut());
+//                gameCharacter.setHelmet(new BeginnerHelmet());
+                new CharacterSaveHelper(characterFileUrl).saveObjToFile(gameCharacter);
+            } else if(character == GameCode.CAREER_MAGICIAN){
+                //法师
+                Character gameCharacter = new MagicianFactory().createCharacter();
+                gameCharacter.setNickName(nickName);
+                //设置技能装备，用于测试存储
+//                gameCharacter.setSkill1(new SimpleCut());
+//                gameCharacter.setHelmet(new BeginnerHelmet());
+                new CharacterSaveHelper(characterFileUrl).saveObjToFile(gameCharacter);
+            } else if(character == GameCode.CAREER_ASSASSIN){
+                //刺客
+                Character gameCharacter = new AssassinFactory().createCharacter();
+                gameCharacter.setNickName(nickName);
+                //设置技能装备，用于测试存储
+//                gameCharacter.setSkill1(new SimpleCut());
+//                gameCharacter.setHelmet(new BeginnerHelmet());
+                new CharacterSaveHelper(characterFileUrl).saveObjToFile(gameCharacter);
+            }
+            return GameCode.REGISTER_SUCCESS;
         }
     }
 

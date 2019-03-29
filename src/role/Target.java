@@ -1,6 +1,6 @@
 package role;
 
-import utils.StatusCode;
+import utils.GameCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -90,7 +90,7 @@ public abstract class Target implements Atkable{
     //本来人物是要在子类重写，但因为加了备忘录，套了一层人物带上装备后的对象，因此可以用这个方法
     public Map<String, Object> physicalCut(){
         Map<String, Object> result = new HashMap<>();
-        result.put(StatusCode.ATK_DAMAGE, this.getPhysicalAtk());
+        result.put(GameCode.ATK_DAMAGE, this.getPhysicalAtk());
         return result;
     }
 }

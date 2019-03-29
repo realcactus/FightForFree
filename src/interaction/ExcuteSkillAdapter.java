@@ -1,15 +1,13 @@
 package interaction;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import role.Character;
 import skill.DamageSkill;
 import skill.GainSkill;
 import skill.ISkill;
 import skill.WeakenSkill;
-import utils.StatusCode;
+import utils.GameCode;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,12 +54,12 @@ public class ExcuteSkillAdapter implements Skillable{
             int magicalAtk = character.getMagicalAtk();
             if(atkPercentage > 0){
                 int damageAtk = fixedDamage + (int)(physicalAtk * atkPercentage);
-                values.put(StatusCode.ATK_DAMAGE,damageAtk);
+                values.put(GameCode.ATK_DAMAGE,damageAtk);
             }
             //魔法攻击
             if(matkPercentage > 0){
                 int damageMatk = fixedDamage + (int)(magicalAtk * matkPercentage);
-                values.put(StatusCode.MATK_DAMAGE,damageMatk);
+                values.put(GameCode.MATK_DAMAGE,damageMatk);
             }
             //吸血
             //如果攻击带吸血效果，那么先产生输出，然后更新角色状态（错）

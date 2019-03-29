@@ -4,10 +4,13 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 蓝宝石，增加装备50点魔法
  */
-public class GemMp implements IEquipDecorator {
+public class GemMp implements IEquipDecorator, Serializable {
+    private static final long serialVersionUID = -5723479739243239956L;
     //维护一个装备对象
     private IEquip equip;
 

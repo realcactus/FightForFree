@@ -4,10 +4,14 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 初识之衣
  */
-public class BeginnerClothes extends Clothes{
+public class BeginnerClothes extends Clothes implements Serializable {
+    private static final long serialVersionUID = 8779735934552203349L;
+
     public BeginnerClothes() {
         this.hp = 100;
         this.physicalDef = 50;

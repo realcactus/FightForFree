@@ -1,9 +1,13 @@
 package role;
 
+import java.io.Serializable;
+
 /**
  * 魔法师
  */
-public class Magician extends Character implements Cloneable{
+public class Magician extends Character implements Cloneable {
+
+    private static final long serialVersionUID = -302823276648399853L;
 
     private Magician(Builder builder){
         this.level = builder.level;
@@ -30,21 +34,6 @@ public class Magician extends Character implements Cloneable{
         }
     }
 
-    @Override
-    public String toString() {
-        return "Magician{" +
-                "level=" + level +
-                ", experience=" + experience +
-                ", money=" + money +
-                ", hp=" + hp +
-                ", mp=" + mp +
-                ", physicalAtk=" + physicalAtk +
-                ", magicalAtk=" + magicalAtk +
-                ", physicalDef=" + physicalDef +
-                ", magicalDef=" + magicalDef +
-                ", critRate=" + critRate +
-                '}';
-    }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {

@@ -4,11 +4,14 @@ package skill;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 简单劈砍技能
  */
 public class SimpleCut extends DamageSkill {
 
+    private static final long serialVersionUID = -4874233591694457635L;
     //技能升级经验表，最高升到5级
     protected int[] experienceTable = {2000,5000,10000,30000,100000};
     public SimpleCut() {

@@ -1,9 +1,15 @@
 package role;
 
+import java.io.Serializable;
+import java.util.Arrays;
+
 /**
  * 战士
  */
 public class Warrior extends Character implements Cloneable{
+
+    private static final long serialVersionUID = -4896701614866114865L;
+
     private Warrior(Builder builder){
         this.level = builder.level;
         this.experience = builder.experience;
@@ -49,22 +55,6 @@ public class Warrior extends Character implements Cloneable{
         public Target build() {
             return new Warrior(this);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Warrior{" +
-                "level=" + level +
-                ", experience=" + experience +
-                ", money=" + money +
-                ", hp=" + hp +
-                ", mp=" + mp +
-                ", physicalAtk=" + physicalAtk +
-                ", magicalAtk=" + magicalAtk +
-                ", physicalDef=" + physicalDef +
-                ", magicalDef=" + magicalDef +
-                ", critRate=" + critRate +
-                '}';
     }
 
     @Override

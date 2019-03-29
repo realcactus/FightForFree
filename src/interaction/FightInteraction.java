@@ -4,7 +4,7 @@ import role.*;
 import role.Character;
 import skill.ISkill;
 import skill.SimpleCut;
-import utils.StatusCode;
+import utils.GameCode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +66,7 @@ public class FightInteraction {
 
         FightState state = new FightState();
         //初始化角色行动
-        state.setValue(StatusCode.CHARACTER_STEP);
+        state.setValue(GameCode.CHARACTER_STEP);
         FightContext fightContext = new FightContext(state);
 
         int stepNum = 1;
@@ -95,12 +95,12 @@ public class FightInteraction {
             skill.upLevel();
         }
         while (true){
-            if(state.getValue() == StatusCode.CHARACTER_DIE){
+            if(state.getValue() == GameCode.CHARACTER_DIE){
                 //角色死亡，退出
                 System.out.println("角色死亡");
                 break;
             }
-            if(state.getValue() == StatusCode.FIGHT_FINISH){
+            if(state.getValue() == GameCode.FIGHT_FINISH){
                 //角色胜利，获得奖励
                 System.out.println("角色胜利");
                 break;
@@ -133,15 +133,15 @@ public class FightInteraction {
 
         System.out.println("-----收获------");
         System.out.println(resultValues);
-//        System.out.println(resultValues.get(StatusCode.DROP_ITEM));
-        List<Object> items = (List<Object>) resultValues.get(StatusCode.DROP_ITEM);
+//        System.out.println(resultValues.get(GameCode.DROP_ITEM));
+        List<Object> items = (List<Object>) resultValues.get(GameCode.DROP_ITEM);
         for(Object obj:items){
             if(obj instanceof IEquip){
                 fighter.getEquipBag().add((IEquip) obj);
             }
         }
-        fighter.increaseExperience((Integer) resultValues.get(StatusCode.DROP_EXP));
-        fighter.increaseMoney((Integer) resultValues.get(StatusCode.DROP_MONEY));
+        fighter.increaseExperience((Integer) resultValues.get(GameCode.DROP_EXP));
+        fighter.increaseMoney((Integer) resultValues.get(GameCode.DROP_MONEY));
         System.out.println("----------状态----------");
         int levelBefore = fighter.getLevel();
         fighter.checkLevelUp();

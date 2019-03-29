@@ -4,10 +4,14 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 巨人之斧
  */
-public class GiantAxe extends Weapon {
+public class GiantAxe extends Weapon implements Serializable {
+    private static final long serialVersionUID = 849020215134598222L;
+
     public GiantAxe() {
         this.physicalAtk = 100;
         this.magicalAtk = 50;

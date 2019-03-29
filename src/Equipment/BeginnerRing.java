@@ -4,10 +4,13 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 初识之戒
  */
-public class BeginnerRing extends Ring{
+public class BeginnerRing extends Ring implements Serializable {
+    private static final long serialVersionUID = 3990986553602066302L;
     //另外初识之戒还有1%的吸血
     private double bloodSuck = 0.01;
     public BeginnerRing() {

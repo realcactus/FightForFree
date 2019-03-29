@@ -4,10 +4,13 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 光芒石，增加装备50点气血
  */
-public class GemHp implements IEquipDecorator{
+public class GemHp implements IEquipDecorator, Serializable {
+    private static final long serialVersionUID = -8368046832634840933L;
     //维护一个装备对象
     private IEquip equip;
 

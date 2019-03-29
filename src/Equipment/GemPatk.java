@@ -4,10 +4,13 @@ package Equipment;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 太阳石，增加20点物理攻击力
  */
-public class GemPatk implements IEquipDecorator {
+public class GemPatk implements IEquipDecorator, Serializable {
+    private static final long serialVersionUID = -2945892417200087753L;
     //维护一个装备对象
     private IEquip equip;
 

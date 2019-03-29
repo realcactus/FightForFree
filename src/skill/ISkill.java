@@ -4,6 +4,8 @@ package skill;
  * @Author: Zhou Xiaosong
  */
 
+import java.io.Serializable;
+
 /**
  * 技能接口
  */
@@ -13,7 +15,7 @@ package skill;
     （2）增益技能，回复气血restoreHp，增加自身物理防御increasePdef，增加法术防御increaseMdef
     （3）削弱状态技能，减少怪物物理防御weakenPdef，减少怪物法术防御weakenMdef
  */
-public abstract class ISkill {
+public abstract class ISkill implements Serializable {
     //技能等级
     protected int level = 0;
 

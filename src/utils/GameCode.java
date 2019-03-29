@@ -3,7 +3,7 @@ package utils;
 /**
  * @Author: Zhou Xiaosong
  */
-public class StatusCode {
+public class GameCode {
     public static String ADD_HP = "addHpForMe";
     public static String ADD_MP = "addMPForMe";
     public static String ADD_PDEF = "addPhysicalDefForMe";
@@ -46,4 +46,17 @@ public class StatusCode {
     public static int USER_EXISTED = -1;
     public static int NICKNAME_EXISTED = -2;
     public static int REGISTER_SUCCESS = 0;
+
+    //职业选择
+    //战士
+    public static int CAREER_WARRIOR = 1;
+    //法师
+    public static int CAREER_MAGICIAN = 2;
+    //刺客
+    public static int CAREER_ASSASSIN = 3;
+
+
+    //文件路径管理
+    public static String LOGIN_FILE = "./files/user";
+    public static String CHARACTER_FILE = "./files/characters";
 }
