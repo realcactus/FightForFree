@@ -2,13 +2,14 @@ package role;
 
 import utils.GameCode;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 可选目标类，可选目标包含角色、怪物，他们有相同的部分
  */
-public abstract class Target implements Atkable{
+public abstract class Target implements Atkable, Serializable {
     //气血值
     protected int hp;
     //魔法值

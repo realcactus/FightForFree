@@ -1,6 +1,13 @@
 package view;
 
-import listener.LoginOkButtonListener;
+import role.Assassin;
+import role.Character;
+import role.Magician;
+import role.Warrior;
+import user.User;
+import utils.CharacterSaveHelper;
+import utils.GameCode;
+import utils.LoginFileHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,8 +49,86 @@ public class LoginFrame extends JFrame {
         JButton jb2 = new JButton("注册");
         add(jb2);
 
-        LoginOkButtonListener buttonListener = new LoginOkButtonListener(jt1,jt2);
-        jb.addActionListener(buttonListener);
+//        LoginOkButtonListener buttonListener = new LoginOkButtonListener(jt1,jt2);
+//        jb.addActionListener(buttonListener);
+
+        jb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("ok按钮被点击！");
+                validate(jt1,jt2);
+            }
+            public void validate(JTextField jt1, JTextField jt2){
+                String userName = jt1.getText();
+                String userPassword = jt2.getText();
+                String result = LoginFileHandler.UserValidate(userName,userPassword,GameCode.LOGIN_FILE);
+                if(result != ""){
+                    //登录成功之后，需要把角色属性加载进来
+                    User user = User.getInstance();
+                    user.setUserName(jt1.getText());
+                    user.setCharacter(new CharacterSaveHelper(GameCode.CHARACTER_FILE+"/"+result).getObjFromFile());
+                    System.out.println(user.getCharacter());
+                    JOptionPane.showMessageDialog(null,"登录成功！");
+                    //关闭当前窗体
+                    dispose();
+                    //打开主界面窗体
+                    PreBattleFrame preBattleFrame = new PreBattleFrame();
+                    Character updateCharacter = user.getCharacter();
+                    if(updateCharacter instanceof Warrior){
+                        preBattleFrame.getLblNewLabel_19().setText("战士");
+                    } else if(updateCharacter instanceof Magician){
+                        preBattleFrame.getLblNewLabel_19().setText("法师");
+                    } else if (updateCharacter instanceof Assassin){
+                        preBattleFrame.getLblNewLabel_19().setText("刺客");
+                    }
+                    preBattleFrame.getLblNewLabel_1().setText(updateCharacter.getNickName());
+                    preBattleFrame.getLblNewLabel_2().setText(String.valueOf(updateCharacter.getLevel()));
+                    preBattleFrame.getLblNewLabel_3().setText(String.valueOf(updateCharacter.getHp()));
+                    preBattleFrame.getLblNewLabel_4().setText(String.valueOf(updateCharacter.getMp()));
+                    preBattleFrame.getLblNewLabel_5().setText(String.valueOf(updateCharacter.getPhysicalAtk()));
+                    preBattleFrame.getLblNewLabel_6().setText(String.valueOf(updateCharacter.getMagicalAtk()));
+                    preBattleFrame.getLblNewLabel_7().setText(String.valueOf(updateCharacter.getPhysicalDef()));
+                    preBattleFrame.getLblNewLabel_8().setText(String.valueOf(updateCharacter.getMagicalDef()));
+                    preBattleFrame.getLblNewLabel_9().setText(String.valueOf(updateCharacter.getBloodSucking()));
+                    preBattleFrame.getLblNewLabel_10().setText(String.valueOf(updateCharacter.getCritRate()));
+
+                    if(updateCharacter.getHelmet()!=null){
+                        preBattleFrame.getLabel_14().setText(updateCharacter.getHelmet().description().split("\\+")[0]);
+                    } else{
+                        preBattleFrame.getLabel_14().setText("无");
+                    }
+                    if(updateCharacter.getWeapon()!=null){
+                        preBattleFrame.getLblNewLabel_11().setText(updateCharacter.getWeapon().description().split("\\+")[0]);
+                    } else{
+                        preBattleFrame.getLblNewLabel_11().setText("无");
+                    }
+                    if(updateCharacter.getClothes()!=null){
+                        preBattleFrame.getLblNewLabel_12().setText(updateCharacter.getClothes().description().split("\\+")[0]);
+                    } else{
+                        preBattleFrame.getLblNewLabel_12().setText("无");
+                    }
+                    if(updateCharacter.getShoes()!=null){
+                        preBattleFrame.getLblNewLabel_13().setText(updateCharacter.getShoes().description().split("\\+")[0]);
+                    } else{
+                        preBattleFrame.getLblNewLabel_13().setText("无");
+                    }
+                    if(updateCharacter.getRing()!=null){
+                        preBattleFrame.getLblNewLabel_14().setText(updateCharacter.getRing().description().split("\\+")[0]);
+                    } else{
+                        preBattleFrame.getLblNewLabel_14().setText("无");
+                    }
+                    preBattleFrame.getLblNewLabel_15().setText(String.valueOf(updateCharacter.getExperience()));
+                    preBattleFrame.getLblNewLabel_16().setText(String.valueOf(updateCharacter.getMoney()));
+
+                    preBattleFrame.setVisible(true);
+
+                } else {
+                    JOptionPane.showMessageDialog(null,"账户名或密码错误！");
+                }
+                jt1.setText("");
+                jt2.setText("");
+            }
+        });
 
         jb2.addActionListener(new ActionListener() {
             @Override

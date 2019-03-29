@@ -27,4 +27,6 @@ public interface IEquip extends Serializable {
      */
     String description();
 
+
+
 }

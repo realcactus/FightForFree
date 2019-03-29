@@ -21,7 +21,7 @@ import java.util.Map;
  */
 
 //基本角色最多携带4个技能，后面扩展可能会有能携带多个技能的角色
-public abstract class Character extends Target implements Serializable{
+public abstract class Character extends Target{
     protected int level;
     protected int experience;
     protected int money;
