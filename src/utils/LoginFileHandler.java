@@ -1,11 +1,15 @@
 package utils;
 
-import Equipment.BeginnerHelmet;
+import Equipment.*;
 import role.*;
 import role.Character;
+import skill.HolyLight;
+import skill.ISkill;
 import skill.SimpleCut;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: Zhou Xiaosong
@@ -185,6 +189,17 @@ public class LoginFileHandler {
                 Character gameCharacter = new AssassinFactory().createCharacter();
                 gameCharacter.setNickName(nickName);
                 //设置技能装备，用于测试存储
+//                List<ISkill> list = new ArrayList<>();
+//                list.add(new SimpleCut());
+//                list.add(new HolyLight());
+//                gameCharacter.setSkillBag(list);
+//                List<IEquip> list_equip = new ArrayList<>();
+//                list_equip.add(new BeginnerHelmet());
+//                list_equip.add(new BeginnerRing());
+//                list_equip.add(new BeginnerShoes());
+//                list_equip.add(new BeginnerClothes());
+//                list_equip.add(new SecretSword());
+//                gameCharacter.setEquipBag(list_equip);
 //                gameCharacter.setSkill1(new SimpleCut());
 //                gameCharacter.setHelmet(new BeginnerHelmet());
                 new CharacterSaveHelper(characterFileUrl).saveObjToFile(gameCharacter);

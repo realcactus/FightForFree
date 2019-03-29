@@ -59,4 +59,13 @@ public class GameCode {
     //文件路径管理
     public static String LOGIN_FILE = "./files/user";
     public static String CHARACTER_FILE = "./files/characters";
+
+
+    //各类宝石售价
+    public static int HP_GEM = 500;
+    public static int MATK_GEM = 1000;
+    public static int MDEF_GEM = 700;
+    public static int MP_GEM = 500;
+    public static int ATK_GEM = 1000;
+    public static int PDEF_GEM = 800;
 }

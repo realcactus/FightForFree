@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * @Author: Zhou Xiaosong
@@ -119,7 +121,15 @@ public class LoginFrame extends JFrame {
                     }
                     preBattleFrame.getLblNewLabel_15().setText(String.valueOf(updateCharacter.getExperience()));
                     preBattleFrame.getLblNewLabel_16().setText(String.valueOf(updateCharacter.getMoney()));
-
+                    //关闭之前要保存数据的
+                    preBattleFrame.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosing(WindowEvent e) {
+                            super.windowClosing(e);
+                            Character c = User.getInstance().getCharacter();
+                            new CharacterSaveHelper(GameCode.CHARACTER_FILE+"/"+c.getNickName()).saveObjToFile(c);
+                        }
+                    });
                     preBattleFrame.setVisible(true);
 
                 } else {

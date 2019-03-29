@@ -308,88 +308,168 @@ public abstract class Character extends Target{
     //计算人物带上装备后的防御状态
     public int calculatePhysicalDef(){
         int basedPhysicalDef = this.physicalDef;
-        basedPhysicalDef += this.helmet.calculatePhysicalDef();
-        basedPhysicalDef += this.clothes.calculatePhysicalDef();
-        basedPhysicalDef += this.shoes.calculatePhysicalDef();
-        basedPhysicalDef += this.weapon.calculatePhysicalDef();
-        basedPhysicalDef += this.ring.calculatePhysicalDef();
+        if(this.helmet!=null){
+            basedPhysicalDef += this.helmet.calculatePhysicalDef();
+        }
+        if(this.clothes!=null){
+            basedPhysicalDef += this.clothes.calculatePhysicalDef();
+        }
+        if(this.shoes!=null){
+            basedPhysicalDef += this.shoes.calculatePhysicalDef();
+        }
+        if(this.weapon!=null){
+            basedPhysicalDef += this.weapon.calculatePhysicalDef();
+        }
+        if(this.ring!=null){
+            basedPhysicalDef += this.ring.calculatePhysicalDef();
+        }
         return basedPhysicalDef;
     }
 
     //计算人物在带上装备后的物理攻击力
     public int calculatePhysicalAtk(){
         int basePhysicalAtk = this.physicalAtk;
-        basePhysicalAtk += this.helmet.calculatePhysicalAtk();
-        basePhysicalAtk += this.clothes.calculatePhysicalAtk();
-        basePhysicalAtk += this.shoes.calculatePhysicalAtk();
-        basePhysicalAtk += this.weapon.calculatePhysicalAtk();
-        basePhysicalAtk += this.ring.calculatePhysicalAtk();
+        if(this.helmet!=null){
+            basePhysicalAtk += this.helmet.calculatePhysicalAtk();
+        }
+        if(this.clothes!=null){
+            basePhysicalAtk += this.clothes.calculatePhysicalAtk();
+        }
+        if(this.shoes!=null){
+            basePhysicalAtk += this.shoes.calculatePhysicalAtk();
+        }
+        if(this.weapon!=null){
+            basePhysicalAtk += this.weapon.calculatePhysicalAtk();
+        }
+        if(this.ring!=null){
+            basePhysicalAtk += this.ring.calculatePhysicalAtk();
+        }
         return basePhysicalAtk;
     }
 
     //计算人物在带上装备后的法术攻击力
     public int calculateMagicalAtk(){
         int baseMagicalAtk = this.magicalAtk;
-        baseMagicalAtk += this.helmet.calculateMagicalAtk();
-        baseMagicalAtk += this.clothes.calculateMagicalAtk();
-        baseMagicalAtk += this.shoes.calculateMagicalAtk();
-        baseMagicalAtk += this.weapon.calculateMagicalAtk();
-        baseMagicalAtk += this.ring.calculateMagicalAtk();
+        if(this.helmet!=null){
+            baseMagicalAtk += this.helmet.calculateMagicalAtk();
+        }
+        if(this.clothes!=null){
+            baseMagicalAtk += this.clothes.calculateMagicalAtk();
+        }
+        if(this.shoes!=null){
+            baseMagicalAtk += this.shoes.calculateMagicalAtk();
+        }
+        if(this.weapon!=null){
+            baseMagicalAtk += this.weapon.calculateMagicalAtk();
+        }
+        if(this.ring!=null){
+            baseMagicalAtk += this.ring.calculateMagicalAtk();
+        }
         return baseMagicalAtk;
     }
 
     //计算人物在带上装备后的法术防御
     public int calculateMagicalDef(){
         int baseMagicalDef = this.magicalDef;
-        baseMagicalDef += this.helmet.calculateMagicalDef();
-        baseMagicalDef += this.clothes.calculateMagicalDef();
-        baseMagicalDef += this.shoes.calculateMagicalDef();
-        baseMagicalDef += this.weapon.calculateMagicalDef();
-        baseMagicalDef += this.ring.calculateMagicalDef();
+        if(this.helmet!=null){
+            baseMagicalDef += this.helmet.calculateMagicalDef();
+        }
+        if(this.clothes!=null){
+            baseMagicalDef += this.clothes.calculateMagicalDef();
+        }
+        if(this.shoes!=null){
+            baseMagicalDef += this.shoes.calculateMagicalDef();
+        }
+        if(this.weapon!=null){
+            baseMagicalDef += this.weapon.calculateMagicalDef();
+        }
+        if(this.ring!=null){
+            baseMagicalDef += this.ring.calculateMagicalDef();
+        }
         return baseMagicalDef;
     }
 
     //计算人物在带上装备后的气血
     public int calculateHp(){
         int baseHp = this.hp;
-        baseHp += this.helmet.calculateHp();
-        baseHp += this.clothes.calculateHp();
-        baseHp += this.shoes.calculateHp();
-        baseHp += this.weapon.calculateHp();
-        baseHp += this.ring.calculateHp();
+        if(this.helmet!=null){
+            baseHp += this.helmet.calculateHp();
+        }
+        if(this.clothes!=null){
+            baseHp += this.clothes.calculateHp();
+        }
+        if(this.shoes!=null){
+            baseHp += this.shoes.calculateHp();
+        }
+        if(this.weapon!=null){
+            baseHp += this.weapon.calculateHp();
+        }
+        if(this.ring!=null){
+            baseHp += this.ring.calculateHp();
+        }
         return baseHp;
     }
 
     //计算人物在带上装备后的蓝
     public int calculateMp(){
         int baseMp = this.mp;
-        baseMp += this.helmet.calculateMp();
-        baseMp += this.clothes.calculateMp();
-        baseMp += this.shoes.calculateMp();
-        baseMp += this.weapon.calculateMp();
-        baseMp += this.ring.calculateMp();
+        if(this.helmet!=null){
+            baseMp += this.helmet.calculateMp();
+        }
+        if(this.clothes!=null){
+            baseMp += this.clothes.calculateMp();
+        }
+        if(this.shoes!=null){
+            baseMp += this.shoes.calculateMp();
+        }
+        if(this.weapon!=null){
+            baseMp += this.weapon.calculateMp();
+        }
+        if(this.ring!=null){
+            baseMp += this.ring.calculateMp();
+        }
         return baseMp;
     }
 
     //计算人物在带上装备后的暴击率
     public double calculateCritRate(){
         double baseCrit = this.critRate;
-        baseCrit += this.helmet.calculateCritRate();
-        baseCrit += this.clothes.calculateCritRate();
-        baseCrit += this.shoes.calculateCritRate();
-        baseCrit += this.weapon.calculateCritRate();
-        baseCrit += this.ring.calculateCritRate();
+        if(this.helmet!=null){
+            baseCrit += this.helmet.calculateCritRate();
+        }
+        if(this.clothes!=null){
+            baseCrit += this.clothes.calculateCritRate();
+        }
+        if(this.shoes!=null){
+            baseCrit += this.shoes.calculateCritRate();
+        }
+        if(this.weapon!=null){
+            baseCrit += this.weapon.calculateCritRate();
+        }
+        if(this.ring!=null){
+            baseCrit += this.ring.calculateCritRate();
+        }
         return baseCrit;
     }
 
     //计算人物在带上装备后的吸血率
     public double calculateSuckBloodRate(){
         double baseSuckBlood = this.bloodSucking;
-        baseSuckBlood += this.helmet.calculateBloodSucking();
-        baseSuckBlood += this.clothes.calculateBloodSucking();
-        baseSuckBlood += this.shoes.calculateBloodSucking();
-        baseSuckBlood += this.weapon.calculateBloodSucking();
-        baseSuckBlood += this.ring.calculateBloodSucking();
+        if(this.helmet!=null){
+            baseSuckBlood += this.helmet.calculateBloodSucking();
+        }
+        if(this.clothes!=null){
+            baseSuckBlood += this.clothes.calculateBloodSucking();
+        }
+        if(this.shoes!=null){
+            baseSuckBlood += this.shoes.calculateBloodSucking();
+        }
+        if(this.weapon!=null){
+            baseSuckBlood += this.weapon.calculateBloodSucking();
+        }
+        if(this.ring!=null){
+            baseSuckBlood += this.ring.calculateBloodSucking();
+        }
         return baseSuckBlood;
     }
 

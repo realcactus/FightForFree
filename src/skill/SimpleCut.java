@@ -83,5 +83,19 @@ public class SimpleCut extends DamageSkill {
         return matkPercentage;
     }
 
+    @Override
+    public String description() {
+        return "简单劈砍";
+    }
 
+    @Override
+    public String toString() {
+        return "SimpleCut{" +
+                "fixedDamage=" + fixedDamage +
+                ", atkPercentage=" + atkPercentage +
+                ", matkPercentage=" + matkPercentage +
+                ", level=" + level +
+                ", needMp=" + needMp +
+                '}';
+    }
 }

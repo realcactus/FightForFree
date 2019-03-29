@@ -36,6 +36,7 @@ public abstract class ISkill implements Serializable {
     public abstract int calculateIncreaseMdef();
     public abstract int calculateWeakenPdef();
     public abstract int calculateWeakenMdef();
+    public abstract String description();
 
     public int getLevel() {
         return level;
